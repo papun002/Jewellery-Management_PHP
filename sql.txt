@@ -1,0 +1,17 @@
+SELECT product_jms.product_name, product_jms.product_weight, product_jms.product_huid_no, product_jms.product_hsn_no, product_jms.product_desc, category_jms.category_name FROM product_jms INNER JOIN category_jms ON product_jms.client_id = category_jms.client_id;
+
+SELECT product_jms.product_name, product_jms.product_weight, product_jms.product_huid_no, product_jms.product_hsn_no, product_jms.product_desc, category_jms.category_name FROM product_jms INNER JOIN category_jms WHERE product_jms.client_id = 1 AND category_jms.client_id = 1;
+
+SELECT product_jms.product_name, product_jms.product_weight, product_jms.product_huid_no, product_jms.product_hsn_no, product_jms.product_desc, category_jms.category_name FROM product_jms INNER JOIN category_jms WHERE product_jms.client_id = 1 AND category_jms.client_id = 1 ORDER by category_jms.category_id;
+
+View for All product list-------------------
+
+CREATE VIEW `view_product_jms` AS select product_jms.client_id AS client_id, category_jms.category_id AS category_id, product_jms.product_id AS product_id, category_jms.category_name AS category_name, product_jms.product_name AS product_name, product_jms.product_weight AS product_weight, product_jms.product_huid_no AS product_huid_no, product_jms.product_hsn_no AS product_hsn_no, product_jms.product_desc as product_desc, product_jms.product_barcode AS product_barcode, product_jms.status AS status FROM (product_jms JOIN category_jms ON (product_jms.category_id = category_jms.category_id));
+
+View for All client-------------------
+
+CREATE VIEW `view_all_clients` AS select client_sub_jms.admin_id AS admin_id, client_sub_jms.client_id AS client_id, client_jms.client_name AS client_name, client_jms.contact_person AS contact_person, client_jms.client_contact AS client_contact, client_jms.client_add AS client_add, client_jms.client_email AS client_email, client_jms.client_gst AS client_gst, client_jms.client_user AS client_user, client_jms.client_password AS client_password, client_sub_jms.plan_id AS plan_id, plan_jms.plan_name As plan_name, plan_jms.plan_duration AS plan_duration, plan_jms.plan_price AS plan_price, client_sub_jms.sub_id AS sub_id, client_sub_jms.start_date AS start_date, client_sub_jms.end_date AS end_date, client_sub_jms.sub_price AS sub_price, client_sub_jms.sub_status AS sub_status FROM ((client_sub_jms JOIN client_jms ON (client_sub_jms.client_id = client_jms.client_id)) JOIN plan_jms ON (client_sub_jms.plan_id = plan_jms.plan_id));
+
+View for Alll orders-----------------
+
+CREATE view view_order_jms AS SELECT order_jms.client_id AS client_id, order_jms.order_id AS order_id, order_jms.date AS date, order_jms.cust_name AS cust_name, order_jms.cust_contno AS cust_contno, order_jms.cust_add AS cust_add, order_jms.priceper_gram AS priceper_gram, order_jms.pdt_type AS pdt_type, order_pdt_jms.pdt_name AS pdt_name, order_pdt_jms.pdt_wt AS pdt_wt, order_pdt_jms.pdt_desc AS pdt_desc, order_pdt_jms.pdt_img AS pdt_img, order_pdt_jms.pdt_price AS pdt_price, order_jms.est_amt AS est_amt, order_jms.est_date AS est_date, order_jms.est_wt AS est_wt, order_jms.adv AS adv, order_jms.adv_amt AS adv_amt, order_jms.adv_gold AS adv_gold, order_jms.adv_gld_desc AS adv_gld_desc, order_pdt_jms.order_status AS order_status FROM (order_jms join order_pdt_jms ON (order_jms.order_id=order_pdt_jms.order_id));
