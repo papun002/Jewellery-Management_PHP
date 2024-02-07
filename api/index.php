@@ -1,7 +1,7 @@
 <!-- PHP Starts Here -->
 <?php
 session_start();
-require "./db.php";
+require "../db.php";
 
 if(isset($_SESSION['client_logid']) && isset($_SESSION['Active'])){
     header("location:client/client_dashboard.php");
