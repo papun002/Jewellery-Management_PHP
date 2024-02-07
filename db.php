@@ -2,7 +2,7 @@
 $server = "10.35.11.173";
 $username = "root";
 $password = "";
-$database = "databaseName";
+$database = "j";
 
 $con = mysqli_connect($server,$username,$password,$database);
 if(!$con){
